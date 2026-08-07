@@ -1,5 +1,6 @@
 package com.algaworks.algafoodapi.api.v2.controller;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import com.algaworks.algafoodapi.api.ResourceUriHelper;
 import com.algaworks.algafoodapi.api.v1.openapi.controller.CidadeControllerOpenApi;
@@ -13,16 +14,13 @@ import com.algaworks.algafoodapi.domain.exception.NegocioException;
 import com.algaworks.algafoodapi.domain.model.Cidade;
 import com.algaworks.algafoodapi.domain.service.CadastroCidadeService;
 
-import io.swagger.annotations.ApiModel;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import javax.validation.Valid;
-
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/v2/cidades", produces = MediaType.APPLICATION_JSON_VALUE)

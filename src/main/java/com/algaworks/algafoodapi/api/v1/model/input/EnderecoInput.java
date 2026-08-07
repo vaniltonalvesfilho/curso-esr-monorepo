@@ -1,34 +1,34 @@
 package com.algaworks.algafoodapi.api.v1.model.input;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
-import io.swagger.annotations.ApiModelProperty;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Setter
 @Getter
 public class EnderecoInput {
 
-	@ApiModelProperty(example = "40000000", required = true)
+	@Schema(example = "40000000", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank
     private String cep;
 
-	@ApiModelProperty(example = "Rua Número Zero", required = true)
+	@Schema(example = "Rua Número Zero", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank
     private String logradouro;
 
-	@ApiModelProperty(example = "42", required = true)
+	@Schema(example = "42", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank
     private String numero;
 
-	@ApiModelProperty(example = "Próximo ao centro")
+	@Schema(example = "Próximo ao centro")
     private String complemento;
 
-	@ApiModelProperty(example = "Barro Vinicius de Morais", required = true)
+	@Schema(example = "Barro Vinicius de Morais", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank
     private String bairro;
 

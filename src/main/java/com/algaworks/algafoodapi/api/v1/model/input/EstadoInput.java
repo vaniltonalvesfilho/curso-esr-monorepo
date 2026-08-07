@@ -1,17 +1,17 @@
 package com.algaworks.algafoodapi.api.v1.model.input;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 @Setter
 @Getter
 public class EstadoInput {
 
-	@ApiModelProperty(example = "Sergipe", required = true)
+	@Schema(example = "Sergipe", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank
     private String nome;
 

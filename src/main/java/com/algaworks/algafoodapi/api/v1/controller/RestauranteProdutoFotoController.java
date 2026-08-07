@@ -22,7 +22,7 @@ import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
@@ -49,9 +49,7 @@ public class RestauranteProdutoFotoController implements RestauranteProdFotoCont
 			@PathVariable Long produtoId, @Valid FotoProdutoInput fotoProdutoInput,
 			@RequestPart(required = true) MultipartFile arquivo) throws IOException {
 		Produto produto = produtoService.findOrFail(restauranteId, produtoId);
-		
-		MultipartFile arquivo = fotoProdutoInput.getArquivo();
-		
+
 		FotoProduto foto = new FotoProduto();
 		foto.setProduto(produto);
 		foto.setDescricao(fotoProdutoInput.getDescricao());

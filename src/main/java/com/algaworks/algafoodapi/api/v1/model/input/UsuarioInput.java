@@ -1,25 +1,22 @@
 package com.algaworks.algafoodapi.api.v1.model.input;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-
-import io.swagger.annotations.ApiModelProperty;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 @Setter
 @Getter
 public class UsuarioInput {
 
-	@ApiModelProperty(
-			value = "Nome completo do usuário", 
-			example = "Manolo Cicrano Fulano da Silva",
-			required = true)
+	@Schema(description = "Nome completo do usuário", example = "Manolo Cicrano Fulano da Silva", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank
     private String nome;
 
-	@ApiModelProperty(example = "manolo@email.com", required = true)
+	@Schema(example = "manolo@email.com", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank
     @Email
     private String email;

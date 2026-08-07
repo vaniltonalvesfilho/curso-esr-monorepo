@@ -1,8 +1,9 @@
 package com.algaworks.algafoodapi.api.v1.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 //import com.algaworks.algafoodapi.api.model.view.RestauranteViewModel;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,25 +17,25 @@ import org.springframework.hateoas.server.core.Relation;
 @Getter
 public class RestauranteModel extends RepresentationModel<RestauranteModel> {
 
-	@ApiModelProperty( example = "1")
+	@Schema(example = "1")
 //    @JsonView({RestauranteViewModel.Resumo.class, RestauranteViewModel.ApenasNome.class})
     private Long id;
 
-	@ApiModelProperty(example = "Thai Gourmet")
+	@Schema(example = "Thai Gourmet")
 //    @JsonView({RestauranteViewModel.Resumo.class, RestauranteViewModel.ApenasNome.class})
     private String nome;
 
-	@ApiModelProperty(example = "10.50")
+	@Schema(example = "10.50")
 //    @JsonView(RestauranteViewModel.Resumo.class)
     private BigDecimal taxaFrete;
 
 //    @JsonView(RestauranteViewModel.Resumo.class)
     private CozinhaModel cozinha;
 
-    @ApiModelProperty(example = "true")
+    @Schema(example = "true")
     private Boolean ativo;
     
-    @ApiModelProperty(example = "true")
+    @Schema(example = "true")
     private Boolean aberto;
     
     private EnderecoModel endereco;

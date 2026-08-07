@@ -1,21 +1,21 @@
 package com.algaworks.algafoodapi.api.v1.model.input;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
-
-import io.swagger.annotations.ApiModelProperty;
+import jakarta.validation.constraints.NotBlank;
 
 @Setter
 @Getter
 public class SenhaInput {
 
-	@ApiModelProperty(required = true, example = "toor123")
+	@Schema(requiredMode = Schema.RequiredMode.REQUIRED, example = "toor123")
     @NotBlank
     private String senhaAtual;
 
-	@ApiModelProperty(required = true, example = "123toor")
+	@Schema(requiredMode = Schema.RequiredMode.REQUIRED, example = "123toor")
     @NotBlank
     private String novaSenha;
 

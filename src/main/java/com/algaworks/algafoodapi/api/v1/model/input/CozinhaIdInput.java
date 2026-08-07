@@ -1,18 +1,19 @@
 package com.algaworks.algafoodapi.api.v1.model.input;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import com.algaworks.algafoodapi.core.validation.Groups;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Setter
 @Getter
 public class CozinhaIdInput {
 
-	@ApiModelProperty(example = "1", required = true)
+	@Schema(example = "1", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotNull
     private Long id;
 

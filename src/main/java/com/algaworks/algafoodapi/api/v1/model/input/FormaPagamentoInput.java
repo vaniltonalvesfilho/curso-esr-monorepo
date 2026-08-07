@@ -1,17 +1,17 @@
 package com.algaworks.algafoodapi.api.v1.model.input;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
-
-import io.swagger.annotations.ApiModelProperty;
+import jakarta.validation.constraints.NotBlank;
 
 @Setter
 @Getter
 public class FormaPagamentoInput {
 
-	@ApiModelProperty(example = "Bitcoin", required = true)
+	@Schema(example = "Bitcoin", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank
     private String descricao;
 

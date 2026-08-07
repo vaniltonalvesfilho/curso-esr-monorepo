@@ -1,19 +1,19 @@
 package com.algaworks.algafoodapi.api.v1.model.input;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
-import io.swagger.annotations.ApiModelProperty;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Setter
 @Getter
 public class CidadeInput {
 
-	@ApiModelProperty(example = "Uberlândia", required = true)
+	@Schema(example = "Uberlândia", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank
     private String nome;
 

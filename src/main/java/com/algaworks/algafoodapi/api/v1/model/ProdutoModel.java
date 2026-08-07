@@ -1,5 +1,7 @@
 package com.algaworks.algafoodapi.api.v1.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,26 +10,24 @@ import java.math.BigDecimal;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import io.swagger.annotations.ApiModelProperty;
-
 @Relation(collectionRelation = "produtos")
 @Setter
 @Getter
 public class ProdutoModel extends RepresentationModel<ProdutoModel> {
 
-	@ApiModelProperty(example = "1", required = true)
+	@Schema(example = "1", requiredMode = Schema.RequiredMode.REQUIRED)
     private Long id;
 	
-	@ApiModelProperty(example = "Prime Rib", required = true)
+	@Schema(example = "Prime Rib", requiredMode = Schema.RequiredMode.REQUIRED)
     private String nome;
 	
-	@ApiModelProperty(example = "Carne de qualidade", required = true)
+	@Schema(example = "Carne de qualidade", requiredMode = Schema.RequiredMode.REQUIRED)
     private String descricao;
 	
-	@ApiModelProperty(example = "42.0", required = true)
+	@Schema(example = "42.0", requiredMode = Schema.RequiredMode.REQUIRED)
     private BigDecimal preco;
 	
-	@ApiModelProperty(example = "true", required = true)
+	@Schema(example = "true", requiredMode = Schema.RequiredMode.REQUIRED)
     private Boolean ativo;
 
 }

@@ -4,7 +4,8 @@ lock tables cidade write, cozinha write, estado write, forma_pagamento write,
 	grupo write, grupo_permissao write, permissao write,
 	produto write, restaurante write, restaurante_forma_pagamento write,
 	restaurante_usuario_responsavel write, usuario write, usuario_grupo write,
-	pedido write, item_pedido write, foto_produto write, oauth_client_details write, oauth_code write;
+	pedido write, item_pedido write, foto_produto write,
+	oauth2_registered_client write, oauth2_authorization write, oauth2_authorization_consent write;
 
 delete from cidade;
 delete from cozinha;
@@ -22,8 +23,9 @@ delete from usuario_grupo;
 delete from pedido;
 delete from item_pedido;
 delete from foto_produto;
-delete from oauth_client_details;
-delete from oauth_code;
+delete from oauth2_authorization_consent;
+delete from oauth2_authorization;
+delete from oauth2_registered_client;
 
 set foreign_key_checks = 1;
 
@@ -182,40 +184,6 @@ values (5, '8d774bcf-b238-42f3-aef1-5fb388754d63', 1, 3, 2, 1, '38400-200', 'Rua
 
 insert into item_pedido (id, pedido_id, produto_id, quantidade, preco_unitario, preco_total, observacao)
 values (6, 5, 3, 1, 87.2, 87.2, null);
-
-insert into oauth_client_details (
-    client_id, resource_ids, client_secret,
-    scope, authorized_grant_types, web_server_redirect_uri, authorities,
-    access_token_validity, refresh_token_validity, autoapprove
-)
-values (
-           'algafood-web', null, '$2y$12$w3igMjsfS5XoAYuowoH3C.54vRFWlcXSHLjX7MwF990Kc2KKKh72e',
-           'READ,WRITE', 'password', null, null,
-           60 * 60 * 6, 60 * 24 * 60 * 60, null
-       );
-
-insert into oauth_client_details (
-    client_id, resource_ids, client_secret,
-    scope, authorized_grant_types, web_server_redirect_uri, authorities,
-    access_token_validity, refresh_token_validity, autoapprove
-)
-values (
-           'foodanalytics', null, '$2a$12$UORWteJ5qMzjgB1V3XRl4.LVtGfPU/YKgyJ0ZFbEPGl67PyoDWnk6',
-           'READ,WRITE', 'authorization_code', 'http://aplicacao-cliente', null,
-           null, null, null
-       );
-
-insert into oauth_client_details (
-    client_id, resource_ids, client_secret,
-    scope, authorized_grant_types, web_server_redirect_uri, authorities,
-    access_token_validity, refresh_token_validity, autoapprove
-)
-values (
-           'faturamento', null, '$2y$12$fHixriC7yXX/i1/CmpnGH.RFyK/l5YapLCFOEbIktONjE8ZDykSnu',
-           'READ,WRITE', 'client_credentials', null, 'CONSULTAR_PEDIDOS,GERAR_RELATORIOS',
-           null, null, null
-       );
-
 
 unlock tables;
 

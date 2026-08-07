@@ -2,7 +2,14 @@
 <configuration>
 	
 	<include resource="org/springframework/boot/logging/logback/base.xml" />
-	<springProfile name="production">
+
+	<!--
+		Envio para o Loggly. Ficava atrelado ao perfil "production", mas sem um
+		token o endpointUrl fica malformado e o appender loga um erro de 403 a
+		cada poucos centenas de milissegundos, inundando a saída. Agora é um
+		perfil próprio: ative "production,loggly" e informe LOGGLY_TOKEN.
+	-->
+	<springProfile name="loggly">
 		<springProperty name="logglyToken" source="logging.loggly.token" />
 			
 		<appender name="loggly" class="ch.qos.logback.ext.loggly.LogglyAppender">

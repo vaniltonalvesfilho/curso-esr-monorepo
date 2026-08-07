@@ -2,7 +2,7 @@ package com.algaworks.algafoodapi.infrastructure.repository;
 
 import java.util.Optional;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 import com.algaworks.algafoodapi.domain.repository.CustomJpaRepository;
 

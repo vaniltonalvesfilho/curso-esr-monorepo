@@ -1,8 +1,8 @@
 package com.algaworks.algafoodapi.core.validation;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
-import javax.validation.constraints.PositiveOrZero;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
+import jakarta.validation.constraints.PositiveOrZero;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

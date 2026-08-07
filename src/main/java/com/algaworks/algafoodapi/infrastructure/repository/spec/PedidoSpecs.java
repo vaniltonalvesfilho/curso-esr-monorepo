@@ -4,7 +4,7 @@ import com.algaworks.algafoodapi.domain.model.Pedido;
 import com.algaworks.algafoodapi.domain.filter.PedidoFilter;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Predicate;
 import java.util.ArrayList;
 
 public class PedidoSpecs {

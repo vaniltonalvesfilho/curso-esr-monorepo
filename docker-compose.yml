@@ -1,7 +1,6 @@
-version: "3.9"
 services:
   algafood-mysql:
-    image: mysql:8.0
+    image: mysql:8.4
     environment:
       MYSQL_ROOT_PASSWORD: "toor123"
     ports:
@@ -13,8 +12,12 @@ services:
     command: ["/app/wait-for-it.sh", "algafood-mysql:3306", "-t", "30", "--", "java", "-jar", "api.jar"]
     environment:
       DB_HOST: algafood-mysql
-      SPRING_SESSION_STORE_TYPE: redis
-      SPRING_REDIS_HOST: algafood-redis
+      # Renomeada no Spring Boot 3: spring.redis.* virou spring.data.redis.*
+      SPRING_DATA_REDIS_HOST: algafood-redis
+      # O perfil development desliga o Spring Session (não há Redis no host ao
+      # rodar fora do Docker). Aqui há, e a sessão compartilhada entre as
+      # réplicas depende dele, então a exclusão é desfeita.
+      SPRING_AUTOCONFIGURE_EXCLUDE: ""
       SPRING_PROFILES_ACTIVE: development
 #    ports:
 #      - "8080:8080"
@@ -34,7 +37,7 @@ services:
     depends_on:
       - algafood-api
   algafood-redis:
-    image: redis:6.2.1-alpine
+    image: redis:7.4-alpine
     networks:
       - algafood-network
 networks:

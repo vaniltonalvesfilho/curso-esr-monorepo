@@ -1,5 +1,12 @@
 package com.algaworks.algafoodapi.api.v1.openapi.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import java.util.List;
 
 import org.springframework.hateoas.CollectionModel;
@@ -7,15 +14,10 @@ import org.springframework.hateoas.CollectionModel;
 import com.algaworks.algafoodapi.api.v1.model.ProdutoModel;
 import com.algaworks.algafoodapi.api.v1.model.input.ProdutoInput;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
-@Api(tags = "Produtos")
+@Tag(name = "Produtos")
 public interface RestauranteProdutoControllerOpenApi {
 	
 
@@ -23,16 +25,12 @@ public interface RestauranteProdutoControllerOpenApi {
 		@ApiResponse(responseCode = "400", description = "ID informado inválido"),
 		@ApiResponse(responseCode = "404", description = "Restaurante não encontrado")
 	})
-	@ApiImplicitParams({
-		@ApiImplicitParam(
-				value = "Incluir ou não produtos ativos",
-				name = "incluirInativos",
-				paramType = "query",
-				dataTypeClass = Boolean.class)
+	@Parameters({
+		@Parameter(description = "Incluir ou não produtos ativos", name = "incluirInativos", in = ParameterIn.QUERY, schema = @Schema(implementation = Boolean.class))
 	})
-	@ApiOperation("Listar produtos dos restaurantes")
+	@Operation(summary = "Listar produtos dos restaurantes")
     public CollectionModel<ProdutoModel> getAll(
-    		@ApiParam(value = "ID do restaurante", required = true)
+    		@Parameter(description = "ID do restaurante", required = true)
     		Long restauranteId, 
     		Boolean incluirInativos);
 
@@ -40,30 +38,30 @@ public interface RestauranteProdutoControllerOpenApi {
 		@ApiResponse(responseCode = "400", description = "ID do restaurante ou produto informado inválido"),
 		@ApiResponse(responseCode = "404", description = "Restaurante ou produto não encontrado")
 	})
-	@ApiOperation("Buscar produto por restaurante")
+	@Operation(summary = "Buscar produto por restaurante")
     public ProdutoModel getById(
-    		@ApiParam(value = "ID do restaurante", required = true)
+    		@Parameter(description = "ID do restaurante", required = true)
     		Long restauranteId, 
-    		@ApiParam(value = "ID do produto", required = true)
+    		@Parameter(description = "ID do produto", required = true)
     		Long produtoId);
 
 	@ApiResponses({
 		@ApiResponse(responseCode = "404", description = "Restaurante não encontrado")
 	})
-	@ApiOperation("Cria um novo produto para o restaurante")
+	@Operation(summary = "Cria um novo produto para o restaurante")
     public ProdutoModel create(
-    		@ApiParam(value = "ID do restaurante", required = true)
+    		@Parameter(description = "ID do restaurante", required = true)
     		Long restauranteId, 
     		ProdutoInput produtoInput);
 
 	@ApiResponses({
 		@ApiResponse(responseCode = "404", description = "Restaurante ou produto não encontrado")
 	})
-	@ApiOperation("Atualiza um produto do restaurante")
+	@Operation(summary = "Atualiza um produto do restaurante")
     public ProdutoModel update(
-    		@ApiParam(value = "ID do restaurante", required = true)
+    		@Parameter(description = "ID do restaurante", required = true)
     		Long restauranteId, 
-    		@ApiParam(value = "ID do produto", required = true)
+    		@Parameter(description = "ID do produto", required = true)
     		Long produtoId, ProdutoInput produtoInput);
 	
 }

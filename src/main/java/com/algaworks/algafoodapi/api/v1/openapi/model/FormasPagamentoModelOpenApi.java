@@ -1,22 +1,23 @@
 package com.algaworks.algafoodapi.api.v1.openapi.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.List;
 
 import org.springframework.hateoas.Links;
 
 import com.algaworks.algafoodapi.api.v1.model.FormaPagamentoModel;
 
-import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
-@ApiModel("FormasPagamentoModel")
+@Schema(name = "FormasPagamentoModel")
 @Data
 public class FormasPagamentoModelOpenApi {
 	
 	private FormaPagamentoEmbeddedModelOpenApi _embedded;
 	private Links _links;
 	
-	@ApiModel("FormasPagamentoEmbeddedModel")
+	@Schema(name = "FormasPagamentoEmbeddedModel")
 	@Data
 	public class FormaPagamentoEmbeddedModelOpenApi {
 		

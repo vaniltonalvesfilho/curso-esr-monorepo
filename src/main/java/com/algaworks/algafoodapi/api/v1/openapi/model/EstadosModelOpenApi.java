@@ -1,15 +1,16 @@
 package com.algaworks.algafoodapi.api.v1.openapi.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.List;
 
 import org.springframework.hateoas.Links;
 
 import com.algaworks.algafoodapi.api.v1.model.EstadoModel;
 
-import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
-@ApiModel("EstadosModel")
+@Schema(name = "EstadosModel")
 @Data
 public class EstadosModelOpenApi {
 	
@@ -17,7 +18,7 @@ public class EstadosModelOpenApi {
 	private Links _links;
 	private PageModelOpenApi page;
 
-	@ApiModel("EstadosEmbeddedModelOpenApi")
+	@Schema(name = "EstadosEmbeddedModelOpenApi")
 	@Data
 	public class EstadoEmbeddedModelOpenApi {
 		

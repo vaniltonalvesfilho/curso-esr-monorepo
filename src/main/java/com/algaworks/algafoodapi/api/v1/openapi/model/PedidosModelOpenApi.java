@@ -1,11 +1,12 @@
 package com.algaworks.algafoodapi.api.v1.openapi.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import com.algaworks.algafoodapi.api.v1.model.PedidoModel;
 
-import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.Setter;
 
-@ApiModel("PedidosModel")
+@Schema(name = "PedidosModel")
 public class PedidosModelOpenApi extends PageModelOpenApi {
 }

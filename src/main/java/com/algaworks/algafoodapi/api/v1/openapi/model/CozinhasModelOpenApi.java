@@ -1,15 +1,16 @@
 package com.algaworks.algafoodapi.api.v1.openapi.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.List;
 
 import org.springframework.hateoas.Links;
 
 import com.algaworks.algafoodapi.api.v1.model.CozinhaModel;
 
-import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
-@ApiModel("CozinhasModel")
+@Schema(name = "CozinhasModel")
 @Data
 public class CozinhasModelOpenApi {
 
@@ -17,7 +18,7 @@ public class CozinhasModelOpenApi {
 	private Links _links;
 	private PageModelOpenApi page;
 	
-	@ApiModel("CozinhasEmbeddedModel")
+	@Schema(name = "CozinhasEmbeddedModel")
 	@Data
 	private class CozinhaEmbeddedModelOpenApi {
 		

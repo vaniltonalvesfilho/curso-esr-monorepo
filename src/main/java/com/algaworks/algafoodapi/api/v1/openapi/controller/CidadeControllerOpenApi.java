@@ -1,6 +1,10 @@
 package com.algaworks.algafoodapi.api.v1.openapi.controller;
 
-import javax.validation.Valid;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+import jakarta.validation.Valid;
 
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
@@ -20,17 +24,13 @@ import com.algaworks.algafoodapi.domain.exception.EstadoNaoEncontradoException;
 import com.algaworks.algafoodapi.domain.exception.NegocioException;
 import com.algaworks.algafoodapi.domain.model.Cidade;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
-@Api(tags = "Cidades")
+@Tag(name = "Cidades")
 public interface CidadeControllerOpenApi {
 
-
-    @ApiOperation("Lista as cidades")
+    @Operation(summary = "Lista as cidades")
     public CollectionModel<CidadeModel> getAll();
 
     @ApiResponses({
@@ -38,27 +38,27 @@ public interface CidadeControllerOpenApi {
     	@ApiResponse(responseCode = "404", description = "Cidade não econtrada")
 
     })
-    @ApiOperation("Obtém uma cidade por ID")
+    @Operation(summary = "Obtém uma cidade por ID")
     public CidadeModel getById(
-    		@ApiParam(value = "ID de uma cidade", example = "1") 
+    		@Parameter(description = "ID de uma cidade", example = "1") 
     		Long cidadeId);
 
-    @ApiOperation("Cria uma nova cidade")
+    @Operation(summary = "Cria uma nova cidade")
     public CidadeModel add(CidadeInput cidade);
     
     @ApiResponses({
     	@ApiResponse(responseCode = "404", description = "Cidade não econtrada")
     })
-    @ApiOperation("Atualiza uma cidade por ID")
+    @Operation(summary = "Atualiza uma cidade por ID")
     public ResponseEntity<?> set(
-    		@ApiParam(value = "ID de uma cidade", example = "1")  
+    		@Parameter(description = "ID de uma cidade", example = "1")  
     		Long cidadeId, CidadeInput cidadeInput);
 
     @ApiResponses({
     	@ApiResponse(responseCode = "404", description = "Cidade não econtrada")
     })
-    @ApiOperation("Remove uma cidade por ID")
+    @Operation(summary = "Remove uma cidade por ID")
     public void remove(
-    	@ApiParam(value = "ID de uma cidade", example = "1") 
+    	@Parameter(description = "ID de uma cidade", example = "1") 
     	Long cidadeId);
 }

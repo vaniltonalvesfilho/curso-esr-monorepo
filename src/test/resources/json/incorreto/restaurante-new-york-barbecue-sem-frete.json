@@ -2,5 +2,14 @@
   "nome": "New York Barbecue",
   "cozinha": {
     "id": 2
+  },
+  "endereco": {
+    "cep": "38400-000",
+    "logradouro": "Rua Floriano Peixoto",
+    "numero": "500",
+    "bairro": "Brasil",
+    "cidade": {
+      "id": 1
+    }
   }
 }

@@ -1,10 +1,15 @@
 package com.algaworks.algafoodapi;
 
 import com.algaworks.algafoodapi.api.exceptionhandler.ProblemType;
+import com.algaworks.algafoodapi.domain.model.Cidade;
 import com.algaworks.algafoodapi.domain.model.Cozinha;
+import com.algaworks.algafoodapi.domain.model.Estado;
 import com.algaworks.algafoodapi.domain.model.Restaurante;
+import com.algaworks.algafoodapi.domain.repository.CidadeRepository;
 import com.algaworks.algafoodapi.domain.repository.CozinhaRepository;
+import com.algaworks.algafoodapi.domain.repository.EstadoRepository;
 import com.algaworks.algafoodapi.domain.repository.RestauranteRepository;
+import com.algaworks.algafoodapi.util.AccessTokenFactory;
 import com.algaworks.algafoodapi.util.DatabaseCleaner;
 import com.algaworks.algafoodapi.util.ResourceUtils;
 import io.restassured.RestAssured;
@@ -14,7 +19,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
 
@@ -40,6 +45,15 @@ public class CadastroRestauranteIT {
     @Autowired
     private RestauranteRepository restauranteRepository;
 
+    @Autowired
+    private EstadoRepository estadoRepository;
+
+    @Autowired
+    private CidadeRepository cidadeRepository;
+
+    @Autowired
+    private AccessTokenFactory accessTokenFactory;
+
 
     private String jsonRestaurante;
     private String jsonRestauranteSemFrete;
@@ -53,7 +67,8 @@ public class CadastroRestauranteIT {
     public void setup() {
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
         RestAssured.port = port;
-        RestAssured.basePath = "/restaurantes";
+        RestAssured.basePath = "/v1/restaurantes";
+        RestAssured.authentication = RestAssured.oauth2(accessTokenFactory.gerarToken("EDITAR_RESTAURANTES"));
 
         jsonRestaurante = ResourceUtils.getContentFromResource("/json/correto/restaurante-new-york-barbecue.json");
         jsonRestauranteSemFrete = ResourceUtils.getContentFromResource("/json/incorreto/restaurante-new-york-barbecue-sem-frete.json");
@@ -156,6 +171,17 @@ public class CadastroRestauranteIT {
 
 
     public void prepararDados() {
+        // O endereço passou a ser obrigatório no RestauranteInput, e o cadastro
+        // resolve a cidade pelo id — sem essa massa o POST válido volta 400.
+        Estado estado = new Estado();
+        estado.setNome("Minas Gerais");
+        estadoRepository.save(estado);
+
+        Cidade cidade = new Cidade();
+        cidade.setNome("Uberlândia");
+        cidade.setEstado(estado);
+        cidadeRepository.save(cidade);
+
         Cozinha cozinhaBrasileira = new Cozinha();
         cozinhaBrasileira.setNome("Brasileira");
         cozinhaRepository.save(cozinhaBrasileira);

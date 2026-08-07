@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.*;
 
 import com.algaworks.algafoodapi.domain.model.Cozinha;
 import com.algaworks.algafoodapi.domain.repository.CozinhaRepository;
+import com.algaworks.algafoodapi.util.AccessTokenFactory;
 import com.algaworks.algafoodapi.util.DatabaseCleaner;
 import com.algaworks.algafoodapi.util.ResourceUtils;
 import io.restassured.RestAssured;
@@ -13,7 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
 
@@ -41,11 +42,15 @@ class CadastroCozinhaIT {
     @Autowired
     private CozinhaRepository cozinhaRepository;
 
+    @Autowired
+    private AccessTokenFactory accessTokenFactory;
+
     @BeforeEach
     public void setup() {
         enableLoggingOfRequestAndResponseIfValidationFails();
         RestAssured.port = port;
-        RestAssured.basePath = "/cozinhas";
+        RestAssured.basePath = "/v1/cozinhas";
+        RestAssured.authentication = RestAssured.oauth2(accessTokenFactory.gerarToken("EDITAR_COZINHAS"));
         jsonCozinhaChinesa = ResourceUtils.getContentFromResource("/json/correto/cozinha_chinesa.json");
 
 //        flyway.migrate();
@@ -70,7 +75,8 @@ class CadastroCozinhaIT {
                 .when()
                 .get()
                 .then()
-                .body("", Matchers.hasSize(this.totalCozinhas));
+                // A listagem virou PagedModel (HAL): a coleção agora fica sob _embedded.
+                .body("_embedded.cozinhas", Matchers.hasSize(this.totalCozinhas));
     }
 
     @Test

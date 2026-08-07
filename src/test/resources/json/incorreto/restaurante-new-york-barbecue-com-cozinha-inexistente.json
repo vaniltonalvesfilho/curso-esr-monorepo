@@ -1,7 +1,16 @@
 {
   "nome": "New York Barbecue",
-  "taxaFrete": 12,
+  "taxa_frete": 12,
   "cozinha": {
     "id": 200
+  },
+  "endereco": {
+    "cep": "38400-000",
+    "logradouro": "Rua Floriano Peixoto",
+    "numero": "500",
+    "bairro": "Brasil",
+    "cidade": {
+      "id": 1
+    }
   }
 }

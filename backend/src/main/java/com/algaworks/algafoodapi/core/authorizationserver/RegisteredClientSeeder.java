@@ -63,6 +63,8 @@ public class RegisteredClientSeeder implements ApplicationRunner {
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
 				.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
 				.redirectUri("http://127.0.0.1:8080/authorized")
+				// SPA Angular do monorepo (frontend/), servido pelo ng serve na 4200.
+				.redirectUri("http://localhost:4200/authorized")
 				.scope("READ")
 				.scope("WRITE")
 				.clientSettings(ClientSettings.builder()

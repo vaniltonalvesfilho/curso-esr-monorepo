@@ -1,8 +1,10 @@
+# Regras do monorepo. Cada módulo tem o seu próprio .gitignore com o que é
+# específico dele — frontend/.gitignore cobre node_modules, dist e .angular.
+
+### Backend (Maven / Java) ###
+backend/target/
+!backend/.mvn/wrapper/maven-wrapper.jar
 HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
 
 ### STS ###
 .apt_generated
@@ -14,7 +16,8 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+# Só na raiz: os módulos podem versionar configuração própria de editor.
+/.idea/
 *.iws
 *.iml
 *.ipr
@@ -25,12 +28,9 @@ target/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
 ### VS Code ###
-.vscode/
+/.vscode/
 
 .DS_Store
 bin

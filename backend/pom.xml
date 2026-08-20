@@ -17,7 +17,7 @@
 	<properties>
 		<java.version>21</java.version>
 		<squiggly.version>2.0.1</squiggly.version>
-		<jasperreporsts.version>6.21.5</jasperreporsts.version>
+		<jasperreporsts.version>7.0.7</jasperreporsts.version>
 		<s3.version>1.12.797</s3.version>
 		<springdoc.version>2.8.17</springdoc.version>
 		<modelmapper.version>3.2.6</modelmapper.version>

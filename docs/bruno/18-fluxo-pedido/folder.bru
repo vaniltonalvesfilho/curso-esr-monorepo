@@ -1,0 +1,13 @@
+meta {
+  name: Fluxo do pedido
+  seq: 18
+}
+
+docs {
+  Transições de status. A ordem válida é
+  `CRIADO → CONFIRMADO → ENTREGUE`, e `CANCELADO` só a partir de `CRIADO`.
+  Transição inválida devolve 409 (`NegocioException`).
+
+  Todas exigem `@CheckSecurity.Pedidos.PodeGerenciarPedido`: SCOPE_WRITE mais
+  `GERENCIAR_PEDIDOS` ou gerenciar o restaurante do pedido.
+}

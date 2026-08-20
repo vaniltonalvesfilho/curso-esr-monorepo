@@ -1,0 +1,24 @@
+meta {
+  name: Enviar foto
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{baseUrl}}/v1/restaurantes/{{restauranteId}}/produtos/{{produtoId}}/foto
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  arquivo: @file(/caminho/para/foto.jpg)
+  descricao: Foto do prato
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  Ajuste o caminho do arquivo antes de rodar. Acima de 500KB devolve 400; tipo diferente de JPEG/PNG também.
+}

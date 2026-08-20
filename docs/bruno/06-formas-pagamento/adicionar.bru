@@ -1,0 +1,25 @@
+meta {
+  name: Adicionar
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/v1/formasPagamento
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "descricao": "Bitcoin"
+  }
+}
+
+assert {
+  res.status: eq 201
+}
+
+docs {
+  `@CheckSecurity.FormasPagamento.PodeEditar` — SCOPE_WRITE e EDITAR_FORMAS_PAGAMENTO
+}

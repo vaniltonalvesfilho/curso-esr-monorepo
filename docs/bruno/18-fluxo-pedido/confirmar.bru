@@ -1,0 +1,19 @@
+meta {
+  name: Confirmar
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{baseUrl}}/v1/pedidos/{{pedidoCodigo}}/confirmacao
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 204
+}
+
+docs {
+  Dispara o `NotificacaoClientePedidoConfirmadoService` (e-mail). Em desenvolvimento `algafood.email.impl` é FAKE e só loga.
+}

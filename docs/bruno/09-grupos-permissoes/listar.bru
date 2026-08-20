@@ -1,0 +1,19 @@
+meta {
+  name: Listar permissões do grupo
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/v1/grupos/{{grupoId}}/permissoes
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  `@CheckSecurity.UsuariosGruposPermissoes.PodeConsultar`
+}

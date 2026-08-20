@@ -1,0 +1,15 @@
+meta {
+  name: Remover
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/v2/cidades/{{cidadeId}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 204
+}

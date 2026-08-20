@@ -1,0 +1,14 @@
+meta {
+  name: Restaurantes → Produtos → Foto
+  seq: 14
+}
+
+docs {
+  Upload em `multipart/form-data`. O arquivo passa por dois validadores
+  customizados: `@FileSize(max = "500KB")` e
+  `@FileContentType(allowed = {image/jpeg, image/png})`.
+
+  O GET tem duas variantes no mesmo path, resolvidas por content negotiation:
+  `Accept: application/json` devolve o metadado, `Accept: image/jpeg` devolve os
+  bytes (ou um 302 para o S3, conforme `algafood.storage.tipo`).
+}

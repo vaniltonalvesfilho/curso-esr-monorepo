@@ -1,0 +1,21 @@
+meta {
+  name: Remover
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/v1/cidades/{{cidadeId}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 204
+}
+
+docs {
+  `@CheckSecurity.Cidades.PodeEditar` — SCOPE_WRITE e EDITAR_CIDADES
+
+  Retorna 409 se houver entidade dependente (`EntidadeEmUsoException`).
+}

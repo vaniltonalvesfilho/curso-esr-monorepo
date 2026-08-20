@@ -1,0 +1,21 @@
+meta {
+  name: Autenticação
+  seq: 1
+}
+
+docs {
+  Endpoints do Spring Authorization Server (defaults do
+  `AuthorizationServerSettings.builder().build()`).
+
+  Clients cadastrados pelo `RegisteredClientSeeder`:
+
+  | client_id | tipo | grants | escopos |
+  |---|---|---|---|
+  | `algafood-web` | público (PKCE obrigatório, sem consent) | authorization_code, refresh_token | READ, WRITE |
+  | `foodanalytics` | confidencial (PKCE + consent) | authorization_code, refresh_token | READ, WRITE |
+  | `faturamento` | confidencial | client_credentials | READ, WRITE |
+
+  `algafood-web` é público (`ClientAuthenticationMethod.NONE`), então o
+  `OAuth2RefreshTokenGenerator` nunca emite refresh token para ele — renovar
+  significa repetir o authorization_code com PKCE.
+}

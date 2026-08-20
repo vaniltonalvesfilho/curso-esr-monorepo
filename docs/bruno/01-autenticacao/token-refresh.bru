@@ -1,0 +1,28 @@
+meta {
+  name: Token - refresh_token (foodanalytics)
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/oauth2/token
+  body: multipartForm
+  auth: basic
+}
+
+auth:basic {
+  username: {{foodanalyticsClientId}}
+  password: {{foodanalyticsClientSecret}}
+}
+
+body:multipart-form {
+  grant_type: refresh_token
+  refresh_token: {{refreshToken}}
+}
+
+docs {
+  Só funciona com client confidencial. `algafood-web` é público e nunca
+  recebe refresh token.
+
+  Defina `foodanalyticsClientSecret` no ambiente (valor da massa: `web123`).
+}

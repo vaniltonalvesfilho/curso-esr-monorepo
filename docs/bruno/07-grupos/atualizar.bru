@@ -1,0 +1,25 @@
+meta {
+  name: Atualizar
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/v1/grupos/{{grupoId}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nome": "Financeiro"
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  `@CheckSecurity.UsuariosGruposPermissoes.PodeEditar` — SCOPE_WRITE e EDITAR_USUARIOS_GRUPOS_PERMISSOES
+}

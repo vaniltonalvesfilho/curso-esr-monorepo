@@ -1,0 +1,19 @@
+meta {
+  name: Buscar cidade por ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/v1/cidades/{{cidadeId}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  `@CheckSecurity.Cidades.PodeConsultar` — SCOPE_READ e autenticado
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Root v1
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/v1
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  Links para todas as coleções da v1, montados pelo `AlgaLinks`.
+}

@@ -1,0 +1,21 @@
+meta {
+  name: Buscar forma de pagamento por ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/v1/formasPagamento/{{formaPagamentoId}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  `@CheckSecurity.FormasPagamento.PodeConsultar`
+
+  Também responde a `If-None-Match`, com ETag derivado da `dataAtualizacao` do registro.
+}

@@ -1,0 +1,27 @@
+meta {
+  name: Listar cozinhas
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/v1/cozinhas?page=0&size=10&sort=nome,asc
+  body: none
+  auth: inherit
+}
+
+params:query {
+  page: 0
+  size: 10
+  sort: nome,asc
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  `@CheckSecurity.Cozinhas.PodeConsultarCozinhas` — SCOPE_READ e autenticado
+
+  Resposta `PagedModel` (HAL). `sort` aceita as propriedades da entidade `Cozinha`.
+}

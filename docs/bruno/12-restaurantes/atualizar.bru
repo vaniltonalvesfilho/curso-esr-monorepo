@@ -1,0 +1,35 @@
+meta {
+  name: Atualizar restaurante
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{baseUrl}}/v1/restaurantes/{{restauranteId}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nome": "Comida Mineira",
+    "taxa_frete": 10.50,
+    "cozinha": {
+      "id": 1
+    },
+    "endereco": {
+      "cep": "40000000",
+      "logradouro": "Rua Número Zero",
+      "numero": "42",
+      "complemento": "Próximo ao centro",
+      "bairro": "Barro Vinicius de Morais",
+      "cidade": {
+        "id": 1
+      }
+    }
+  }
+}
+
+assert {
+  res.status: eq 200
+}

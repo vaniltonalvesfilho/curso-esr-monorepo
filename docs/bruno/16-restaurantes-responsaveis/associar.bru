@@ -1,0 +1,15 @@
+meta {
+  name: Associar responsável
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/v1/restaurantes/{{restauranteId}}/responsaveis/{{usuarioId}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 204
+}

@@ -1,0 +1,34 @@
+meta {
+  name: Pesquisar pedidos
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/v1/pedidos?page=0&size=10
+  body: none
+  auth: inherit
+}
+
+params:query {
+  page: 0
+  size: 10
+  ~clienteId: 6
+  ~restauranteId: 1
+  ~dataCriacaoInicio: 2021-06-01T00:00:00Z
+  ~dataCriacaoFim: 2030-12-31T23:59:59Z
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  `@CheckSecurity.Pedidos.PodeBuscar`
+
+  Filtros do `PedidoFilter` (todos opcionais, desabilitados por padrão nesta
+  requisição): `clienteId`, `restauranteId`, `dataCriacaoInicio`,
+  `dataCriacaoFim` (ISO-8601 com offset).
+
+  Devolve `PagedModel<PedidoResumoModel>`.
+}

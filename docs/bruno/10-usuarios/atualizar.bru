@@ -1,0 +1,28 @@
+meta {
+  name: Atualizar usuário
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/v1/usuarios/{{usuarioId}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nome": "João da Silva",
+    "email": "joao.ger@algafood.com.br"
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  `@CheckSecurity.UsuariosGruposPermissoes.PodeAtualizarUsuario` — EDITAR_USUARIOS_GRUPOS_PERMISSOES **ou** ser o próprio usuário.
+
+  `UsuarioInput` não tem senha — para trocar a senha use o endpoint dedicado.
+}

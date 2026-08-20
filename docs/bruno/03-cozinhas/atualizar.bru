@@ -1,0 +1,25 @@
+meta {
+  name: Atualizar
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/v1/cozinhas/{{cozinhaId}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nome": "Brasileira"
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  `@CheckSecurity.Cozinhas.PodeEditarCozinhas` — SCOPE_WRITE e EDITAR_COZINHAS
+}

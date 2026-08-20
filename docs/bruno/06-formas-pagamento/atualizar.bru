@@ -1,0 +1,25 @@
+meta {
+  name: Atualizar
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{baseUrl}}/v1/formasPagamento/{{formaPagamentoId}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "descricao": "Cartão de crédito"
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  `@CheckSecurity.FormasPagamento.PodeEditar`
+}

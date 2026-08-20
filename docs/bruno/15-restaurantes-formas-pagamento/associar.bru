@@ -1,0 +1,15 @@
+meta {
+  name: Associar
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/v1/restaurantes/{{restauranteId}}/formas-pagamento/{{formaPagamentoId}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 204
+}

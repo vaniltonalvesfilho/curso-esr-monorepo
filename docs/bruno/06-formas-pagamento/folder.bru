@@ -1,0 +1,12 @@
+meta {
+  name: Formas de pagamento
+  seq: 6
+}
+
+docs {
+  Atenção ao path: é `/v1/formasPagamento` em camelCase, diferente do resto da API.
+
+  Os dois GETs implementam cache HTTP com ETag (`ShallowEtagHeaderFilter` manual
+  via `ServletWebRequest.checkNotModified`). Reenvie o `ETag` da resposta no
+  header `If-None-Match` para receber **304 Not Modified** sem corpo.
+}

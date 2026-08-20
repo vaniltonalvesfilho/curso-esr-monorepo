@@ -1,0 +1,27 @@
+meta {
+  name: Vendas diárias com token do faturamento
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/v1/estatisticas/vendas-diarias?timeOffset=-03:00
+  body: none
+  auth: none
+}
+
+params:query {
+  timeOffset: -03:00
+}
+
+headers {
+  Authorization: Bearer {{accessTokenFaturamento}}
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  Rode antes *Autenticação → Token - client_credentials (faturamento)*. Demonstra o token sem usuário: as authorities vêm da setting do client, não de um `AuthUser`.
+}

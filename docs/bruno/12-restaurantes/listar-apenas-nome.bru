@@ -1,0 +1,23 @@
+meta {
+  name: Listar (projeção apenas-nome)
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/v1/restaurantes?projecao=apenas-nome
+  body: none
+  auth: inherit
+}
+
+params:query {
+  projecao: apenas-nome
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  Mesmo path, selecionado por `@GetMapping(params = "projecao=apenas-nome")`. Devolve só `id` e `nome`.
+}

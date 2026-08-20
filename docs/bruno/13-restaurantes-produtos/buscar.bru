@@ -1,0 +1,15 @@
+meta {
+  name: Buscar produto por ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/v1/restaurantes/{{restauranteId}}/produtos/{{produtoId}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 200
+}

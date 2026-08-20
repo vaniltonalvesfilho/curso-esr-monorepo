@@ -1,0 +1,23 @@
+meta {
+  name: Listar produtos
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/v1/restaurantes/{{restauranteId}}/produtos?incluirInativos=false
+  body: none
+  auth: inherit
+}
+
+params:query {
+  incluirInativos: false
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  `incluirInativos` (default `false`) alterna entre `findAtivosByRestaurante` e todos.
+}

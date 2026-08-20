@@ -1,0 +1,24 @@
+meta {
+  name: Introspect
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/oauth2/introspect
+  body: formUrlEncoded
+  auth: basic
+}
+
+auth:basic {
+  username: {{faturamentoClientId}}
+  password: {{faturamentoClientSecret}}
+}
+
+body:form-urlencoded {
+  token: {{accessTokenFaturamento}}
+}
+
+docs {
+  Mostra as claims que o resource server enxerga, incluindo as customizadas pelo `AlgaFoodTokenCustomizer` (`usuario_id`, `nome_completo`, `authorities`).
+}

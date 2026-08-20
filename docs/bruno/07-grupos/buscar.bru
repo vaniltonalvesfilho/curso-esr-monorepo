@@ -1,0 +1,19 @@
+meta {
+  name: Buscar grupo por ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/v1/grupos/{{grupoId}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  `@CheckSecurity.UsuariosGruposPermissoes.PodeConsultar` — SCOPE_READ e CONSULTAR_USUARIOS_GRUPOS_PERMISSOES
+}

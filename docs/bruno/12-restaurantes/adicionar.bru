@@ -1,0 +1,41 @@
+meta {
+  name: Adicionar restaurante
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/v1/restaurantes
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nome": "Comida Mineira",
+    "taxa_frete": 10.50,
+    "cozinha": {
+      "id": 1
+    },
+    "endereco": {
+      "cep": "40000000",
+      "logradouro": "Rua Número Zero",
+      "numero": "42",
+      "complemento": "Próximo ao centro",
+      "bairro": "Barro Vinicius de Morais",
+      "cidade": {
+        "id": 1
+      }
+    }
+  }
+}
+
+assert {
+  res.status: eq 201
+}
+
+docs {
+  `@CheckSecurity.Restaurantes.PodeGerenciarCadastro` — SCOPE_WRITE e EDITAR_RESTAURANTES
+
+  Cozinha ou cidade inexistente devolve 400 (`NegocioException`), não 404.
+}

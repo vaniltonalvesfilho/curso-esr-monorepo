@@ -1,0 +1,25 @@
+meta {
+  name: Atualizar
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/v1/estados/{{estadoId}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nome": "Sergipe"
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  `@CheckSecurity.Estados.PodeEditar` — SCOPE_WRITE e EDITAR_ESTADOS
+}

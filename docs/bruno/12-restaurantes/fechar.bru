@@ -1,0 +1,19 @@
+meta {
+  name: Fechar
+  type: http
+  seq: 10
+}
+
+put {
+  url: {{baseUrl}}/v1/restaurantes/{{restauranteId}}/fechamento
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 204
+}
+
+docs {
+  `@CheckSecurity.Restaurantes.PodeGerenciarFuncionamento`
+}

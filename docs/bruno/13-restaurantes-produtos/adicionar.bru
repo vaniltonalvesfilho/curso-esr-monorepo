@@ -1,0 +1,28 @@
+meta {
+  name: Adicionar produto
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/v1/restaurantes/{{restauranteId}}/produtos
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nome": "Prime Rib",
+    "descricao": "Especialidade da casa",
+    "preco": 42.00,
+    "ativo": true
+  }
+}
+
+assert {
+  res.status: eq 201
+}
+
+docs {
+  `@CheckSecurity.Restaurantes.PodeGerenciarFuncionamento`
+}

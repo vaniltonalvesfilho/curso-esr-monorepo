@@ -1,0 +1,15 @@
+meta {
+  name: Desassociar responsável
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{baseUrl}}/v1/restaurantes/{{restauranteId}}/responsaveis/{{usuarioId}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 204
+}

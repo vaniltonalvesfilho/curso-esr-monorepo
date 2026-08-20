@@ -1,0 +1,11 @@
+meta {
+  name: Estatísticas
+  seq: 19
+}
+
+docs {
+  `@CheckSecurity.Estatisticas.PodeConsultar` — SCOPE_READ e `GERAR_RELATORIOS`.
+
+  É o único grupo que o client `faturamento` (client_credentials) consegue
+  acessar, já que suas authorities são `CONSULTAR_PEDIDOS,GERAR_RELATORIOS`.
+}

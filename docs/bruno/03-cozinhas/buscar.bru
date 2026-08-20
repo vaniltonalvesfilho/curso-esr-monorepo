@@ -1,0 +1,19 @@
+meta {
+  name: Buscar cozinha por ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/v1/cozinhas/{{cozinhaId}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  `@CheckSecurity.Cozinhas.PodeConsultarCozinhas` — SCOPE_READ e autenticado
+}

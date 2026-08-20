@@ -1,0 +1,28 @@
+meta {
+  name: Vendas diárias (JSON)
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/v1/estatisticas/vendas-diarias?timeOffset=-03:00
+  body: none
+  auth: inherit
+}
+
+params:query {
+  timeOffset: -03:00
+  ~restauranteId: 1
+  ~dataCriacaoInicio: 2021-06-01T00:00:00Z
+  ~dataCriacaoFim: 2030-12-31T23:59:59Z
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  `timeOffset` (default `+00:00`) define o fuso da agregação por dia — as datas
+  são gravadas em UTC (`NORMALIZE_UTC`), então sem o offset a virada do dia sai
+  errada para o Brasil.
+}

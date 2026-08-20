@@ -1,0 +1,28 @@
+meta {
+  name: Alterar senha
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{baseUrl}}/v1/usuarios/{{usuarioId}}/senha
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "senha_atual": "123",
+    "nova_senha": "123toor"
+  }
+}
+
+assert {
+  res.status: eq 204
+}
+
+docs {
+  `@CheckSecurity.UsuariosGruposPermissoes.PodeAlterarSenha` — só o próprio usuário.
+
+  Senha atual errada devolve 400 (`NegocioException`).
+}

@@ -1,0 +1,38 @@
+meta {
+  name: Token - authorization_code + PKCE (manual)
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/oauth2/token
+  body: formUrlEncoded
+  auth: none
+}
+
+body:form-urlencoded {
+  grant_type: authorization_code
+  code: cole-o-code-da-url-de-callback
+  redirect_uri: {{callbackUrl}}
+  client_id: {{clientId}}
+  code_verifier: cole-o-code-verifier-usado-no-authorize
+}
+
+docs {
+  Só para inspecionar o fluxo na mão — no dia a dia deixe o Bruno resolver
+  pela aba **Auth** da coleção.
+
+  1. Gere um `code_verifier` (43-128 chars) e o `code_challenge` = BASE64URL(SHA256(verifier)).
+  2. Abra no navegador:
+
+  ```
+  {{baseUrl}}/oauth2/authorize?response_type=code&client_id=algafood-web
+    &redirect_uri=http://127.0.0.1:8080/authorized&scope=READ%20WRITE
+    &code_challenge=<challenge>&code_challenge_method=S256
+  ```
+
+  3. Faça login, copie o `code` da URL de retorno e cole acima junto do verifier.
+
+  O `redirect_uri` cai em `/authorized`, que a API não implementa — o 404 é
+  esperado, o que importa é o `code` na query string.
+}

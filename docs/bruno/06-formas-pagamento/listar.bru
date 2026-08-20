@@ -1,0 +1,28 @@
+meta {
+  name: Listar formas de pagamento
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/v1/formasPagamento
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  const etag = res.getHeader("etag");
+  if (etag) {
+    bru.setVar("formaPagamentoListETag", etag);
+  }
+}
+
+docs {
+  `@CheckSecurity.FormasPagamento.PodeConsultar` — SCOPE_READ e autenticado
+
+  Guarda o ETag em `{{formaPagamentoListETag}}` para a requisição seguinte.
+}

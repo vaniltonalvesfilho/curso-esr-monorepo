@@ -1,0 +1,58 @@
+meta {
+  name: Emitir pedido
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/v1/pedidos
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "restaurante": {
+      "id": 1
+    },
+    "endereco_entrega": {
+      "cep": "38400-000",
+      "logradouro": "Rua Floriano Peixoto",
+      "numero": "500",
+      "complemento": "Apto 801",
+      "bairro": "Brasil",
+      "cidade": {
+        "id": 1
+      }
+    },
+    "forma_pagamento": {
+      "id": 1
+    },
+    "itens": [
+      {
+        "produto_id": 1,
+        "quantidade": 2,
+        "observacao": "Muito acebolado por favor"
+      }
+    ]
+  }
+}
+
+assert {
+  res.status: eq 201
+}
+
+script:post-response {
+  if (res.getStatus() === 201) {
+    bru.setVar("pedidoCodigo", res.getBody().codigo);
+  }
+}
+
+docs {
+  `@CheckSecurity.Pedidos.PodeCriar` — SCOPE_WRITE e autenticado
+
+  O cliente é o usuário do token (`usuario_id`), não vem no corpo. A forma de
+  pagamento precisa estar associada ao restaurante, senão devolve 400.
+
+  Salva o código gerado em `{{pedidoCodigo}}`, que a pasta *Fluxo do pedido* usa.
+}

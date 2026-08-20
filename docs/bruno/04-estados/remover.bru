@@ -1,0 +1,21 @@
+meta {
+  name: Remover
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/v1/estados/{{estadoId}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 204
+}
+
+docs {
+  `@CheckSecurity.Estados.PodeEditar` — SCOPE_WRITE e EDITAR_ESTADOS
+
+  Retorna 409 se houver entidade dependente (`EntidadeEmUsoException`).
+}

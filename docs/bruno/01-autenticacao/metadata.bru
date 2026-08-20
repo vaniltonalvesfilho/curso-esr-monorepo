@@ -1,0 +1,19 @@
+meta {
+  name: Metadata do Authorization Server
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/.well-known/oauth-authorization-server
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  Descoberta dos endpoints. Útil para conferir o `issuer` derivado — atrás de proxy ele depende de `server.forward-headers-strategy=framework`.
+}

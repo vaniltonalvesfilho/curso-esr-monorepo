@@ -1,0 +1,21 @@
+meta {
+  name: Listar restaurantes
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/v1/restaurantes
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  `@CheckSecurity.Restaurantes.PodeConsultarRestaurantes`
+
+  Devolve `RestauranteBasicModel` (sem endereço nem formas de pagamento).
+}

@@ -1,0 +1,27 @@
+meta {
+  name: Vendas diárias (PDF)
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/v1/estatisticas/vendas-diarias?timeOffset=-03:00
+  body: none
+  auth: inherit
+}
+
+params:query {
+  timeOffset: -03:00
+}
+
+headers {
+  Accept: application/pdf
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  Mesmo path do JSON, selecionado pelo `Accept`. Relatório JasperReports, devolvido com `Content-Disposition: attachment`.
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Buscar metadados da foto
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/v1/restaurantes/{{restauranteId}}/produtos/{{produtoId}}/foto
+  body: none
+  auth: inherit
+}
+
+headers {
+  Accept: application/json
+}
+
+assert {
+  res.status: eq 200
+}

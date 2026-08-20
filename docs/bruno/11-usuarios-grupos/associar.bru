@@ -1,0 +1,15 @@
+meta {
+  name: Associar grupo
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/v1/usuarios/{{usuarioId}}/grupos/{{grupoId}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 204
+}

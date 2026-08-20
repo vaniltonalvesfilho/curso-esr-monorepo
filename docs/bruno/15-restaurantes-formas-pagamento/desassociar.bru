@@ -1,0 +1,15 @@
+meta {
+  name: Desassociar
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{baseUrl}}/v1/restaurantes/{{restauranteId}}/formas-pagamento/{{formaPagamentoId}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 204
+}

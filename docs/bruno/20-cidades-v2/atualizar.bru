@@ -1,0 +1,22 @@
+meta {
+  name: Atualizar
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/v2/cidades/{{cidadeId}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nome_cidade": "Uberlândia",
+    "id_estado": 1
+  }
+}
+
+assert {
+  res.status: eq 200
+}

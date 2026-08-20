@@ -1,0 +1,42 @@
+auth {
+  mode: oauth2
+}
+
+auth:oauth2 {
+  grant_type: authorization_code
+  callback_url: {{callbackUrl}}
+  authorization_url: {{baseUrl}}/oauth2/authorize
+  access_token_url: {{baseUrl}}/oauth2/token
+  refresh_token_url: {{baseUrl}}/oauth2/token
+  client_id: {{clientId}}
+  client_secret:
+  scope: READ WRITE
+  state: bruno
+  pkce: true
+  credentials_placement: body
+  credentials_id: algafood
+  token_placement: header
+  token_header_prefix: Bearer
+  auto_fetch_token: true
+  auto_refresh_token: true
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  # AlgaFood API
+
+  Coleção de referência da API do curso Especialista Spring REST (AlgaWorks),
+  já na versão migrada para Spring Boot 3 / Spring Authorization Server.
+
+  A autenticação padrão da coleção é **authorization_code + PKCE** com o client
+  público `algafood-web`. Cada requisição herda essa configuração (`auth: inherit`).
+  Ao disparar a primeira requisição o Bruno abre o form login do próprio
+  Authorization Server — use um dos usuários da massa de teste (ver README).
+
+  A pasta **Autenticação** traz os endpoints do Authorization Server avulsos
+  (client_credentials, refresh, introspect, revoke, JWK Set) para quando você
+  quiser inspecionar o fluxo em vez de deixar o Bruno cuidar dele.
+}

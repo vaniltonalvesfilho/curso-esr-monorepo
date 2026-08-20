@@ -1,0 +1,21 @@
+meta {
+  name: Buscar restaurante por ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/v1/restaurantes/{{restauranteId}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  `@CheckSecurity.Restaurantes.PodeConsultarRestaurantes`
+
+  Devolve o `RestauranteModel` completo, com links HAL condicionais (abrir/fechar/ativar conforme o estado atual).
+}

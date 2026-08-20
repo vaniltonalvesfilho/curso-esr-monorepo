@@ -1,0 +1,13 @@
+meta {
+  name: Pedidos
+  seq: 17
+}
+
+docs {
+  Pedido é identificado por **UUID** (`codigo`), não por id numérico.
+  O pedido da massa é `f9981ca4-5a5e-4da3-af04-933861df3e55`.
+
+  `PodeBuscar` usa `@PostAuthorize`: quem não tem `CONSULTAR_PEDIDOS` só enxerga
+  o próprio pedido ou o de um restaurante que gerencia — a autorização acontece
+  **depois** da consulta.
+}

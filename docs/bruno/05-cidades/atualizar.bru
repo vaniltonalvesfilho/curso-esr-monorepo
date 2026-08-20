@@ -1,0 +1,28 @@
+meta {
+  name: Atualizar
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/v1/cidades/{{cidadeId}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nome": "Uberlândia",
+    "estado": {
+      "id": 1
+    }
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  `@CheckSecurity.Cidades.PodeEditar` — SCOPE_WRITE e EDITAR_CIDADES
+}

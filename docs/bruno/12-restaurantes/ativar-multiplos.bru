@@ -1,0 +1,26 @@
+meta {
+  name: Ativar múltiplos
+  type: http
+  seq: 11
+}
+
+put {
+  url: {{baseUrl}}/v1/restaurantes/ativacoes
+  body: json
+  auth: inherit
+}
+
+body:json {
+  [
+    1,
+    2
+  ]
+}
+
+assert {
+  res.status: eq 204
+}
+
+docs {
+  Corpo é um array de IDs. Se algum não existir, a transação inteira falha com 404.
+}

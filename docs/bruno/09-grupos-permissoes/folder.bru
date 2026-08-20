@@ -1,0 +1,13 @@
+meta {
+  name: Grupos → Permissões
+  seq: 9
+}
+
+docs {
+  Associação entre grupo e permissão.
+
+  ⚠️ Os nomes dos métodos Java estão trocados no `GrupoPermissaoController`
+  (`desassociar()` chama `associarPermissao()` e vice-versa). A semântica HTTP
+  está correta: **PUT associa, DELETE desassocia**. Os nomes aqui refletem o
+  comportamento real.
+}

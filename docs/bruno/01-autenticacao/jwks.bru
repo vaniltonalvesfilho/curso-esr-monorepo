@@ -1,0 +1,19 @@
+meta {
+  name: JWK Set
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/oauth2/jwks
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  Chave pública usada para validar a assinatura dos access tokens. Publicada pelo próprio AS — o antigo `JwkSetController` foi removido na migração.
+}

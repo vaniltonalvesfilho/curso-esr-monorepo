@@ -1,0 +1,21 @@
+meta {
+  name: Remover
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/v1/grupos/{{grupoId}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 204
+}
+
+docs {
+  `@CheckSecurity.UsuariosGruposPermissoes.PodeEditar` — SCOPE_WRITE e EDITAR_USUARIOS_GRUPOS_PERMISSOES
+
+  Retorna 409 se houver entidade dependente (`EntidadeEmUsoException`).
+}

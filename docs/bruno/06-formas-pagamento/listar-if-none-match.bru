@@ -1,0 +1,23 @@
+meta {
+  name: Listar com If-None-Match (304)
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/v1/formasPagamento
+  body: none
+  auth: inherit
+}
+
+headers {
+  If-None-Match: {{formaPagamentoListETag}}
+}
+
+assert {
+  res.status: eq 304
+}
+
+docs {
+  Rode *Listar formas de pagamento* antes. Deve responder **304** com corpo vazio.
+}

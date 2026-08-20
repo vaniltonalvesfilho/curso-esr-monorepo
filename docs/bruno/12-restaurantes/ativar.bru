@@ -1,0 +1,15 @@
+meta {
+  name: Ativar
+  type: http
+  seq: 7
+}
+
+put {
+  url: {{baseUrl}}/v1/restaurantes/{{restauranteId}}/ativo
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 204
+}

@@ -1,0 +1,24 @@
+meta {
+  name: Revoke
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/oauth2/revoke
+  body: formUrlEncoded
+  auth: basic
+}
+
+auth:basic {
+  username: {{faturamentoClientId}}
+  password: {{faturamentoClientSecret}}
+}
+
+body:form-urlencoded {
+  token: {{accessTokenFaturamento}}
+}
+
+docs {
+  Revoga o token no `JdbcOAuth2AuthorizationService`. Como os access tokens são JWT auto-contidos, a revogação só tem efeito prático sobre refresh tokens.
+}

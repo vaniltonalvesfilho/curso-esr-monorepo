@@ -1,0 +1,19 @@
+meta {
+  name: Listar permissões
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/v1/permissoes
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  Único endpoint sem `@CheckSecurity` — basta um token válido.
+}

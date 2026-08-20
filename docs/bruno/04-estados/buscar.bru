@@ -1,0 +1,19 @@
+meta {
+  name: Buscar estado por ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/v1/estados/{{estadoId}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  `@CheckSecurity.Estados.PodeConsultar` — SCOPE_READ e autenticado
+}

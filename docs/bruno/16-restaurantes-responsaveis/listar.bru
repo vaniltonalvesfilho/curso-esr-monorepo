@@ -1,0 +1,15 @@
+meta {
+  name: Listar responsáveis
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/v1/restaurantes/{{restauranteId}}/responsaveis
+  body: none
+  auth: inherit
+}
+
+assert {
+  res.status: eq 200
+}

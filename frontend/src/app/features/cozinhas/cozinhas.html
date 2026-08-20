@@ -1,0 +1,38 @@
+<h1>Cozinhas</h1>
+
+@if (erro(); as mensagem) {
+  <div class="erro">{{ mensagem }}</div>
+  <p><button type="button" (click)="carregar(0)">Tentar de novo</button></p>
+} @else if (carregando()) {
+  <p class="vazio">Carregando…</p>
+} @else if (cozinhas().length === 0) {
+  <p class="vazio">Nenhuma cozinha cadastrada.</p>
+} @else {
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nome</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (cozinha of cozinhas(); track cozinha.id) {
+        <tr>
+          <td>{{ cozinha.id }}</td>
+          <td>{{ cozinha.nome }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  @if (pagina(); as meta) {
+    <div class="paginacao">
+      <button type="button" (click)="irPara(-1)" [disabled]="!temAnterior()">Anterior</button>
+      <span
+        >Página {{ meta.number + 1 }} de {{ meta.total_pages }} — {{ meta.total_elements }} no
+        total</span
+      >
+      <button type="button" (click)="irPara(1)" [disabled]="!temProxima()">Próxima</button>
+    </div>
+  }
+}

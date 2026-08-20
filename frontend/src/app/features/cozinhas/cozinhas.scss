@@ -1,0 +1,11 @@
+.paginacao {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  span {
+    color: var(--cor-texto-suave);
+    font-size: 0.875rem;
+  }
+}

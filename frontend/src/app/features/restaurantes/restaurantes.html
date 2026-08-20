@@ -1,0 +1,31 @@
+<h1>Restaurantes</h1>
+
+@if (erro(); as mensagem) {
+  <div class="erro">{{ mensagem }}</div>
+  <p><button type="button" (click)="carregar()">Tentar de novo</button></p>
+} @else if (carregando()) {
+  <p class="vazio">Carregando…</p>
+} @else if (restaurantes().length === 0) {
+  <p class="vazio">Nenhum restaurante cadastrado.</p>
+} @else {
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Cozinha</th>
+        <th>Taxa de frete</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (restaurante of restaurantes(); track restaurante.id) {
+        <tr>
+          <td>{{ restaurante.id }}</td>
+          <td>{{ restaurante.nome }}</td>
+          <td>{{ restaurante.cozinha.nome }}</td>
+          <td>{{ restaurante.taxa_frete | number: '1.2-2' }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}

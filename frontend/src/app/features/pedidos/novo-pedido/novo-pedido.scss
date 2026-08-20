@@ -1,0 +1,111 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 52rem;
+}
+
+fieldset {
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  background: var(--cor-superficie);
+  padding: 1rem 1.25rem 1.25rem;
+  margin: 0;
+
+  legend {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--cor-texto-suave);
+    padding: 0 0.35rem;
+  }
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+
+  span {
+    font-size: 0.8125rem;
+    color: var(--cor-texto-suave);
+  }
+}
+
+.adicionar {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+
+  select {
+    flex: 1;
+  }
+
+  button {
+    flex-shrink: 0;
+  }
+}
+
+table {
+  margin-top: 1rem;
+}
+
+.qtd input {
+  width: 5rem;
+}
+
+.valor {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1rem;
+
+  .largo {
+    grid-column: span 2;
+  }
+}
+
+.totais {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.35rem 1rem;
+  margin: 1rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--cor-borda);
+
+  dt {
+    color: var(--cor-texto-suave);
+    font-size: 0.875rem;
+  }
+
+  dd {
+    margin: 0;
+    text-align: right;
+  }
+
+  .destaque {
+    font-weight: 700;
+    color: var(--cor-texto);
+    font-size: 1rem;
+  }
+}
+
+.acoes {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+
+  a {
+    color: var(--cor-texto-suave);
+  }
+}
+
+.aviso {
+  color: var(--cor-erro);
+  font-size: 0.75rem;
+}

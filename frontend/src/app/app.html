@@ -1,0 +1,20 @@
+<header class="topo">
+  <a class="marca" routerLink="/">AlgaFood</a>
+
+  @if (auth.autenticado()) {
+    <nav>
+      <a routerLink="/restaurantes" routerLinkActive="ativo">Restaurantes</a>
+      <a routerLink="/cozinhas" routerLinkActive="ativo">Cozinhas</a>
+      <a routerLink="/pedidos" routerLinkActive="ativo">Pedidos</a>
+    </nav>
+
+    <div class="sessao">
+      <span class="usuario">{{ auth.nomeUsuario() }}</span>
+      <button type="button" (click)="sair()">Sair</button>
+    </div>
+  }
+</header>
+
+<main>
+  <router-outlet />
+</main>

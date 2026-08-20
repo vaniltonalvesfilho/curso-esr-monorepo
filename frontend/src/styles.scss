@@ -1,0 +1,120 @@
+:root {
+  --cor-fundo: #f6f7f9;
+  --cor-superficie: #ffffff;
+  --cor-borda: #dfe3e8;
+  --cor-texto: #1c2530;
+  --cor-texto-suave: #5b6875;
+  --cor-destaque: #c0392b;
+  --cor-sucesso: #1e7a45;
+  --cor-erro: #b3261e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+}
+
+button {
+  font: inherit;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: 4px;
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    border-color: var(--cor-texto-suave);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  &.primario {
+    background: var(--cor-destaque);
+    border-color: var(--cor-destaque);
+    color: #fff;
+  }
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: 4px;
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  width: 100%;
+
+  &:focus {
+    outline: 2px solid var(--cor-destaque);
+    outline-offset: -1px;
+  }
+
+  &:disabled {
+    background: #f0f2f5;
+    color: var(--cor-texto-suave);
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  overflow: hidden;
+
+  th,
+  td {
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--cor-borda);
+  }
+
+  th {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--cor-texto-suave);
+    background: #f0f2f5;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.erro {
+  padding: 0.75rem 1rem;
+  border: 1px solid #f0c2be;
+  background: #fdeceb;
+  color: var(--cor-erro);
+  border-radius: 6px;
+}
+
+.vazio {
+  color: var(--cor-texto-suave);
+}

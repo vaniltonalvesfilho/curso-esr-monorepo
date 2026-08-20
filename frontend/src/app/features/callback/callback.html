@@ -1,0 +1,6 @@
+@if (erro(); as mensagem) {
+  <div class="erro">{{ mensagem }}</div>
+  <p><button type="button" (click)="voltarParaLogin()">Voltar para o login</button></p>
+} @else {
+  <p class="vazio">Concluindo a autenticação…</p>
+}

@@ -1,0 +1,44 @@
+<div class="cabecalho">
+  <h1>Pedidos</h1>
+  <a class="botao" routerLink="/pedidos/novo">Novo pedido</a>
+</div>
+
+@if (emitido()) {
+  <div class="sucesso">
+    Pedido <strong>{{ emitido() }}</strong> emitido.
+  </div>
+}
+
+@if (erro(); as mensagem) {
+  <div class="erro">{{ mensagem }}</div>
+  <p><button type="button" (click)="carregar()">Tentar de novo</button></p>
+} @else if (carregando()) {
+  <p class="vazio">Carregando…</p>
+} @else if (pedidos().length === 0) {
+  <p class="vazio">Nenhum pedido encontrado.</p>
+} @else {
+  <table>
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Restaurante</th>
+        <th>Cliente</th>
+        <th>Status</th>
+        <th>Criado em</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (pedido of pedidos(); track pedido.codigo) {
+        <tr>
+          <td class="codigo">{{ pedido.codigo }}</td>
+          <td>{{ pedido.restaurante.nome }}</td>
+          <td>{{ pedido.cliente.nome }}</td>
+          <td>{{ pedido.status }}</td>
+          <td>{{ pedido.data_criacao | date: 'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ pedido.valor_total | currency: 'BRL' }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}

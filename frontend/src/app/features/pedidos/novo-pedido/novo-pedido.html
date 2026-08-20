@@ -1,0 +1,175 @@
+<h1>Novo pedido</h1>
+
+@if (erro(); as mensagem) {
+  <div class="erro">{{ mensagem }}</div>
+}
+
+<form [formGroup]="formulario" (ngSubmit)="emitir()">
+  <fieldset>
+    <legend>Restaurante</legend>
+
+    <label>
+      <span>Onde pedir</span>
+      <select
+        formControlName="restauranteId"
+        (change)="aoTrocarRestaurante($any($event.target).value)"
+      >
+        <option [value]="0">Selecione…</option>
+        @for (restaurante of restaurantes(); track restaurante.id) {
+          <option [value]="restaurante.id">{{ restaurante.nome }}</option>
+        }
+      </select>
+    </label>
+
+    @if (restauranteSelecionado(); as restaurante) {
+      <p class="vazio">Taxa de frete: {{ restaurante.taxa_frete | currency: 'BRL' }}</p>
+    }
+  </fieldset>
+
+  @if (restauranteSelecionado()) {
+    <fieldset>
+      <legend>Itens</legend>
+
+      @if (carregandoCardapio()) {
+        <p class="vazio">Carregando o cardápio…</p>
+      } @else if (produtos().length === 0) {
+        <p class="vazio">Este restaurante não tem produtos ativos.</p>
+      } @else {
+        <div class="adicionar">
+          <select
+            [value]="produtoParaAdicionar()"
+            (change)="produtoParaAdicionar.set(+$any($event.target).value)"
+          >
+            <option [value]="0">Selecione um produto…</option>
+            @for (produto of produtos(); track produto.id) {
+              <option [value]="produto.id">
+                {{ produto.nome }} — {{ produto.preco | currency: 'BRL' }}
+              </option>
+            }
+          </select>
+          <button type="button" (click)="adicionarItem()" [disabled]="produtoParaAdicionar() === 0">
+            Adicionar
+          </button>
+        </div>
+      }
+
+      @if (itens().length > 0) {
+        <table>
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Qtd.</th>
+              <th>Observação</th>
+              <th>Subtotal</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of itens(); track item.produto.id) {
+              <tr>
+                <td>{{ item.produto.nome }}</td>
+                <td class="qtd">
+                  <input
+                    type="number"
+                    min="1"
+                    [value]="item.quantidade"
+                    (input)="alterarQuantidade(item.produto.id, +$any($event.target).value)"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    placeholder="opcional"
+                    [value]="item.observacao"
+                    (input)="alterarObservacao(item.produto.id, $any($event.target).value)"
+                  />
+                </td>
+                <td class="valor">{{ item.produto.preco * item.quantidade | currency: 'BRL' }}</td>
+                <td>
+                  <button type="button" (click)="removerItem(item.produto.id)">Remover</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+
+        <dl class="totais">
+          <dt>Subtotal</dt>
+          <dd>{{ subtotal() | currency: 'BRL' }}</dd>
+          <dt>Taxa de frete</dt>
+          <dd>{{ taxaFrete() | currency: 'BRL' }}</dd>
+          <dt class="destaque">Total</dt>
+          <dd class="destaque">{{ total() | currency: 'BRL' }}</dd>
+        </dl>
+      }
+    </fieldset>
+
+    <fieldset>
+      <legend>Pagamento</legend>
+
+      <label>
+        <span>Forma de pagamento</span>
+        <select formControlName="formaPagamentoId">
+          <option [value]="0">Selecione…</option>
+          @for (forma of formasPagamento(); track forma.id) {
+            <option [value]="forma.id">{{ forma.descricao }}</option>
+          }
+        </select>
+        @if (
+          formulario.controls.formaPagamentoId.touched &&
+          formulario.controls.formaPagamentoId.invalid
+        ) {
+          <small class="aviso">Escolha uma forma de pagamento.</small>
+        }
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Endereço de entrega</legend>
+
+      <div class="grade">
+        <label>
+          <span>CEP</span>
+          <input type="text" formControlName="cep" placeholder="38400-000" />
+        </label>
+
+        <label class="largo">
+          <span>Logradouro</span>
+          <input type="text" formControlName="logradouro" />
+        </label>
+
+        <label>
+          <span>Número</span>
+          <input type="text" formControlName="numero" />
+        </label>
+
+        <label>
+          <span>Complemento</span>
+          <input type="text" formControlName="complemento" placeholder="opcional" />
+        </label>
+
+        <label>
+          <span>Bairro</span>
+          <input type="text" formControlName="bairro" />
+        </label>
+
+        <label>
+          <span>Cidade</span>
+          <select formControlName="cidadeId">
+            <option [value]="0">Selecione…</option>
+            @for (cidade of cidades(); track cidade.id) {
+              <option [value]="cidade.id">{{ cidade.nome }} — {{ cidade.estado.nome }}</option>
+            }
+          </select>
+        </label>
+      </div>
+    </fieldset>
+
+    <div class="acoes">
+      <a routerLink="/pedidos">Cancelar</a>
+      <button type="submit" class="primario" [disabled]="enviando() || itens().length === 0">
+        {{ enviando() ? 'Emitindo…' : 'Emitir pedido' }}
+      </button>
+    </div>
+  }
+</form>
